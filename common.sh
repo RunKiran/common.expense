@@ -4,7 +4,7 @@ Handdle_error(){
     echo "error occured at $1: ,error command:$2"
 }
 
-trap ' Handdle_error at ${lineNO}'"BASH_COMMAND"' ERR
+trap ' Handdle_error at ${lineNO}'"$BASH_COMMAND" ' ERR
 USERID=$(id -u)
 TIME_STAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
