@@ -37,7 +37,7 @@ unzip /tmp/frontend.zip &>>$LOGFILE
 
 VALIDATE $? "extraction of code"
 
-cp /home/ec2-user/expenses-shell/expense.conf /etc/nginx/default.d/expense.conf
+cp  /home/ec2-user/common.expense/expense.conf /etc/nginx/default.d/expense.conf
 systemctl restart nginx
 
 VALIDATE $? "restarting of nginx"

@@ -18,7 +18,7 @@ npm install &>>$LOGFILE
 VALIDATE $? "installation of nodejs dependencies"
 
 #coping backend file 
-cp /home/ec2-user/expenses-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+cp /home/ec2-user/common.expense/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "Copy of backend service"
 
 # we need to install mysql client
