@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Source ./common.sh
+source ./common.sh
 
 check_root
 
