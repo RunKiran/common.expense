@@ -17,13 +17,14 @@ rm -rf /app/*
 unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE $? "extracting backend code"
  
+#coping backend file 
+cp /home/ec2-user/common.expense/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
+VALIDATE $? "Copy of backend service"
 
 npm install &>>$LOGFILE
 VALIDATE $? "installation of nodejs dependencies"
 
-#coping backend file 
-cp /home/ec2-user/common.expense/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
-VALIDATE $? "Copy of backend service"
+
 
 # we need to install mysql client
 dnf install mysql -y &>>$LOGFILE
