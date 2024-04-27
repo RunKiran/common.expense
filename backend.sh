@@ -16,19 +16,18 @@ cd /app
 rm -rf /app/*
 unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE $? "extracting backend code"
+npm install &>>$LOGFILE
+VALIDATE $? "installation of nodejs dependencies"
  
 #coping backend file 
 cp /home/ec2-user/common.expense/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "Copy of backend service"
 
-npm install &>>$LOGFILE
-VALIDATE $? "installation of nodejs dependencies"
 
 
 
-# we need to install mysql client
-dnf install mysql -y &>>$LOGFILE
-VALIDATE $? "installation of mysql-client"
+
+
 
 systemctl daemon-reload
 VALIDATE $? "deamon-reloaded"
@@ -39,9 +38,7 @@ VALIDATE $? "enabled backend"
 systemctl start backend.service
 VALIDATE $? "started backend"
 
-#Load Schema
-mysql -h db.mkaws.online -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
-VALIDATE $? "dbrecords are updated"
+
 
 dnf module disable nodejs -y &>>$LOGFILE
 VALIDATE $? "disabled  modules"
@@ -61,8 +58,13 @@ else
     echo -e "Expense user already cre
 
 
+# we need to install mysql client
+dnf install mysql -y &>>$LOGFILE
+VALIDATE $? "installation of mysql-client"
 
-
+#Load Schema
+mysql -h db.mkaws.online -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+VALIDATE $? "dbrecords are updated"
 
 #Restart the service 
 systemctl restart backend.service &>>$LOGFILE
