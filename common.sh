@@ -11,15 +11,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-check_root(){
-if [ $USERID -ne 0 ]
-then
-    echo "you need root access to install packages"
-    exit 1
-else
-    echo "you are super user"    
-fi
-}
+
 
 VALIDATE(){
     if [ $1 -ne 0 ]
@@ -30,4 +22,13 @@ VALIDATE(){
         echo -e "$2..$G Success $N"
           
     fi      
+}
+check_root(){
+if [ $USERID -ne 0 ]
+then
+    echo "you need root access to install packages"
+    exit 1
+else
+    echo "you are super user"    
+fi
 }
