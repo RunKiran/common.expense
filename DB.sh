@@ -9,7 +9,7 @@ read  mysql_root_password
 
 #Install MySQL Server 8.0.x
 
-dnf install mysql-server -y &>>$LOGFILE
+dnf install mysqlll -server -y &>>$LOGFILE
 VALIDATE $? "Installation of MySql"
 
 #Start MySQL Service
